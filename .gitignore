@@ -1,0 +1,33 @@
+# Visual Studio cache
+.vs/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Publish results
+publish/
+*.publish.xml
+
+# Temporary files
+*.user
+*.suo
+*.cache
+*.pdb
+*.log
+
+# Auto-generated database files
+*.mdf
+*.ldf
+
+# Backup files
+*~
+*.bak
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Test results
+TestResult*/
+*.trx
