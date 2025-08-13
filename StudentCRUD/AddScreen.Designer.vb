@@ -22,42 +22,18 @@ Partial Class AddScreen
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Label1 = New Label()
-        txt_mssv = New TextBox()
-        txt_studentname = New TextBox()
         Label2 = New Label()
         txt_classname = New TextBox()
         Label3 = New Label()
-        txt_school = New TextBox()
         Label4 = New Label()
         txt_grade = New TextBox()
         Label5 = New Label()
         btn_save = New Button()
+        Label1 = New Label()
+        txt_mssv = New TextBox()
+        cbb_school = New ComboBox()
+        txt_studentname = New TextBox()
         SuspendLayout()
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(51, 34)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(37, 15)
-        Label1.TabIndex = 0
-        Label1.Text = "MSSV"
-        ' 
-        ' txt_mssv
-        ' 
-        txt_mssv.Location = New Point(107, 31)
-        txt_mssv.Name = "txt_mssv"
-        txt_mssv.Size = New Size(154, 23)
-        txt_mssv.TabIndex = 1
-        ' 
-        ' txt_studentname
-        ' 
-        txt_studentname.Location = New Point(107, 70)
-        txt_studentname.Name = "txt_studentname"
-        txt_studentname.Size = New Size(154, 23)
-        txt_studentname.TabIndex = 3
-        txt_studentname.UseWaitCursor = True
         ' 
         ' Label2
         ' 
@@ -83,13 +59,6 @@ Partial Class AddScreen
         Label3.Size = New Size(34, 15)
         Label3.TabIndex = 6
         Label3.Text = "Class"
-        ' 
-        ' txt_school
-        ' 
-        txt_school.Location = New Point(107, 111)
-        txt_school.Name = "txt_school"
-        txt_school.Size = New Size(154, 23)
-        txt_school.TabIndex = 5
         ' 
         ' Label4
         ' 
@@ -125,19 +94,51 @@ Partial Class AddScreen
         btn_save.Text = "Save"
         btn_save.UseVisualStyleBackColor = True
         ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(51, 34)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(37, 15)
+        Label1.TabIndex = 0
+        Label1.Text = "MSSV"
+        ' 
+        ' txt_mssv
+        ' 
+        txt_mssv.Enabled = False
+        txt_mssv.Location = New Point(107, 31)
+        txt_mssv.Name = "txt_mssv"
+        txt_mssv.Size = New Size(154, 23)
+        txt_mssv.TabIndex = 1
+        ' 
+        ' cbb_school
+        ' 
+        cbb_school.FormattingEnabled = True
+        cbb_school.Location = New Point(107, 114)
+        cbb_school.Name = "cbb_school"
+        cbb_school.Size = New Size(154, 23)
+        cbb_school.TabIndex = 11
+        ' 
+        ' txt_studentname
+        ' 
+        txt_studentname.Location = New Point(107, 73)
+        txt_studentname.Name = "txt_studentname"
+        txt_studentname.Size = New Size(156, 23)
+        txt_studentname.TabIndex = 0
+        ' 
         ' AddScreen
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(343, 300)
+        Controls.Add(txt_studentname)
+        Controls.Add(cbb_school)
         Controls.Add(btn_save)
         Controls.Add(txt_grade)
         Controls.Add(Label5)
         Controls.Add(txt_classname)
         Controls.Add(Label3)
-        Controls.Add(txt_school)
         Controls.Add(Label4)
-        Controls.Add(txt_studentname)
         Controls.Add(Label2)
         Controls.Add(txt_mssv)
         Controls.Add(Label1)
@@ -146,16 +147,15 @@ Partial Class AddScreen
         ResumeLayout(False)
         PerformLayout()
     End Sub
-
-    Friend WithEvents Label1 As Label
-    Friend WithEvents txt_mssv As TextBox
-    Friend WithEvents txt_studentname As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txt_classname As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents txt_school As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents txt_grade As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents btn_save As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txt_mssv As TextBox
+    Friend WithEvents cbb_school As ComboBox
+    Friend WithEvents txt_studentname As TextBox
 End Class
