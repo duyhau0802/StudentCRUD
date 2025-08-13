@@ -11,6 +11,7 @@ Public Class HomeScreen
 }
 
     Private dt As New DataTable()
+
     Private Sub loadData()
         Try
             dt.Columns.Add("MSSV", GetType(String))
@@ -35,18 +36,11 @@ Public Class HomeScreen
 
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
         Dim form As New AddScreen()
+        form.IsUpdate = False
         If form.ShowDialog() = DialogResult.OK Then
             dt.Rows.Add(form.MSSV, form.StudentName, form.School, form.ClassName, form.Grade)
         End If
     End Sub
-
-
-    ' Load data into the DataGridView when the form loads
-
-
-
-
-
 
     ' Nút xóa
     Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
@@ -56,27 +50,49 @@ Public Class HomeScreen
     End Sub
 
     ' Nút sửa
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btn_update.Click
+    Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
         If DataGridView.CurrentRow IsNot Nothing Then
-            Dim rowIndex As Integer = DataGridView.CurrentRow.Index
-            dt.Rows(rowIndex)("name") = txt_name.Text
-            dt.Rows(rowIndex)("school") = txt_school.Text
-            dt.Rows(rowIndex)("class") = txt_class.Text
-            dt.Rows(rowIndex)("grade") = Val(txt_grade.Text)
+            MessageBox.Show("Please select a student to update.", "Update Student", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+        Dim selectedRow As DataGridViewRow = DataGridView.CurrentRow
+        Dim form As New AddScreen With {
+            .MSSV = selectedRow.Cells("MSSV").Value.ToString(),
+            .StudentName = selectedRow.Cells("Name").Value.ToString(),
+            .School = selectedRow.Cells("School").Value.ToString(),
+            .ClassName = selectedRow.Cells("Class").Value.ToString(),
+            .Grade = Convert.ToDouble(selectedRow.Cells("Grade").Value),
+            .IsUpdate = True
+        }
+        If form.ShowDialog() = DialogResult.OK Then
+            selectedRow.Cells("MSSV").Value = form.MSSV
+            selectedRow.Cells("Name").Value = form.StudentName
+            selectedRow.Cells("School").Value = form.School
+            selectedRow.Cells("Class").Value = form.ClassName
+            selectedRow.Cells("Grade").Value = form.Grade
         End If
     End Sub
 
-    ' Khi chọn dòng → load dữ liệu vào TextBox
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellClick
+    ' Sửa nếu double click vào cell
+    Private Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellDoubleClick
         If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = DataGridView.Rows(e.RowIndex)
-            txt_name.Text = row.Cells("name").Value.ToString()
-            txt_school.Text = row.Cells("school").Value.ToString()
-            txt_class.Text = row.Cells("class").Value.ToString()
-            txt_grade.Text = row.Cells("grade").Value.ToString()
+            Dim selectedRow As DataGridViewRow = DataGridView.CurrentRow
+            Dim form As New AddScreen With {
+                .MSSV = selectedRow.Cells("MSSV").Value.ToString(),
+                .StudentName = selectedRow.Cells("Name").Value.ToString(),
+                .School = selectedRow.Cells("School").Value.ToString(),
+                .ClassName = selectedRow.Cells("Class").Value.ToString(),
+                .Grade = Convert.ToDouble(selectedRow.Cells("Grade").Value),
+                .IsUpdate = True
+            }
+            If form.ShowDialog() = DialogResult.OK Then
+                selectedRow.Cells("MSSV").Value = form.MSSV
+                selectedRow.Cells("Name").Value = form.StudentName
+                selectedRow.Cells("School").Value = form.School
+                selectedRow.Cells("Class").Value = form.ClassName
+                selectedRow.Cells("Grade").Value = form.Grade
+            End If
         End If
     End Sub
-
 
     Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
         txt_name.Text = ""
@@ -86,7 +102,7 @@ Public Class HomeScreen
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
-    End Sub
 
+    End Sub
 
 End Class
