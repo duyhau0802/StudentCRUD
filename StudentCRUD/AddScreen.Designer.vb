@@ -127,7 +127,7 @@ Partial Class AddScreen
         ' 
         ' AddScreen
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(343, 300)
         Controls.Add(btn_save)
