@@ -97,11 +97,53 @@ Public Class HomeScreen
     Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
         txt_name.Text = ""
         txt_school.Text = ""
-        txt_class.Text = ""
+        txt_classname.Text = ""
         txt_grade.Text = ""
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+        Dim filters As New List(Of String)
+        ' Tránh phân biệt hoa/thường
+        dt.CaseSensitive = False
+
+        ' Nếu người dùng nhập dữ liệu vào textbox nào thì thêm vào filter
+        If txt_name.Text.Trim() <> "" Then
+            filters.Add($"Name LIKE '%{txt_name.Text.Trim()}%'")
+        End If
+
+        If txt_classname.Text.Trim() <> "" Then
+            filters.Add($"Class LIKE '%{txt_classname.Text.Trim()}%'")
+        End If
+
+        If txt_school.Text.Trim() <> "" Then
+            filters.Add($"School LIKE '%{txt_school.Text.Trim()}%'")
+        End If
+
+        If txt_grade.Text.Trim() <> "" Then
+            filters.Add($"Convert(Grade, 'System.String') LIKE '%{txt_grade.Text.Trim()}%'")
+        End If
+
+        ' Ghép điều kiện với AND
+        Dim filter As String = String.Join(" AND ", filters)
+
+        If filter = "" Then
+            ' Nếu tất cả ô tìm kiếm trống => hiện lại toàn bộ dữ liệu
+            DataGridView.DataSource = dt
+            Return
+        End If
+
+        ' Lọc dữ liệu
+        Dim rows() As DataRow = dt.Select(filter)
+
+        If rows.Length > 0 Then
+            Dim dtResult As DataTable = dt.Clone()
+            For Each r As DataRow In rows
+                dtResult.ImportRow(r)
+            Next
+            DataGridView.DataSource = dtResult
+        Else
+            MessageBox.Show("Không tìm thấy kết quả.")
+        End If
 
     End Sub
 

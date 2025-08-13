@@ -27,7 +27,7 @@ Partial Class HomeScreen
         txt_name = New TextBox()
         txt_school = New TextBox()
         Label2 = New Label()
-        txt_class = New TextBox()
+        txt_classname = New TextBox()
         Label3 = New Label()
         txt_grade = New TextBox()
         Label5 = New Label()
@@ -83,13 +83,13 @@ Partial Class HomeScreen
         Label2.TabIndex = 3
         Label2.Text = "School"
         ' 
-        ' txt_class
+        ' txt_classname
         ' 
-        txt_class.Location = New Point(423, 56)
-        txt_class.Margin = New Padding(3, 2, 3, 2)
-        txt_class.Name = "txt_class"
-        txt_class.Size = New Size(95, 23)
-        txt_class.TabIndex = 6
+        txt_classname.Location = New Point(423, 56)
+        txt_classname.Margin = New Padding(3, 2, 3, 2)
+        txt_classname.Name = "txt_classname"
+        txt_classname.Size = New Size(95, 23)
+        txt_classname.TabIndex = 6
         ' 
         ' Label3
         ' 
@@ -179,7 +179,7 @@ Partial Class HomeScreen
         Controls.Add(btn_delete)
         Controls.Add(txt_grade)
         Controls.Add(Label5)
-        Controls.Add(txt_class)
+        Controls.Add(txt_classname)
         Controls.Add(Label3)
         Controls.Add(txt_school)
         Controls.Add(Label2)
@@ -199,7 +199,7 @@ Partial Class HomeScreen
     Friend WithEvents txt_name As TextBox
     Friend WithEvents txt_school As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txt_class As TextBox
+    Friend WithEvents txt_classname As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txt_grade As TextBox
     Friend WithEvents Label5 As Label
