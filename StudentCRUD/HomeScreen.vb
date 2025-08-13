@@ -1,38 +1,27 @@
 ﻿Imports System.Formats.Asn1
 
 Public Class HomeScreen
-    Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
-        Try
+    ' Dữ liệu cố định
+    Private Shared ReadOnly Students As (String, String, String, String, Double)() = {
+    ("SV001", "Nguyen Van A", "DUT", "IT01", 8.5),
+    ("SV002", "Tran Thi B", "DUT", "IT02", 7.8),
+    ("SV003", "Le Van C", "DUT", "IT01", 9.0),
+    ("SV004", "Pham Thi D", "DUT", "IT03", 8.2),
+    ("SV005", "Hoang Van E", "DUT", "IT02", 7.5)
+}
 
-        Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-
-    ' Load data into the DataGridView when the form loads
-
-    Private Sub HomeScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        loadData()
-    End Sub
-
-    Private dt As DataTable
-
+    Private dt As New DataTable()
     Private Sub loadData()
         Try
-            dt = New DataTable()
-
             dt.Columns.Add("MSSV", GetType(String))
             dt.Columns.Add("Name", GetType(String))
             dt.Columns.Add("School", GetType(String))
             dt.Columns.Add("Class", GetType(String))
             dt.Columns.Add("Grade", GetType(Double))
 
-            dt.Rows.Add("SV001", "Nguyen Van A", "DUT", "IT01", 8.5)
-            dt.Rows.Add("SV002", "Tran Thi B", "DUT", "IT02", 7.8)
-            dt.Rows.Add("SV003", "Le Van C", "DUT", "IT01", 9.0)
-            dt.Rows.Add("SV004", "Pham Thi D", "DUT", "IT03", 8.2)
-            dt.Rows.Add("SV005", "Hoang Van E", "DUT", "IT02", 7.5)
+            For Each s In Students
+                dt.Rows.Add(s.Item1, s.Item2, s.Item3, s.Item4, s.Item5)
+            Next
 
             DataGridView.DataSource = dt
         Catch ex As Exception
@@ -40,8 +29,27 @@ Public Class HomeScreen
         End Try
     End Sub
 
+    Private Sub HomeScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        loadData()
+    End Sub
+
+    Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+        Dim form As New AddScreen()
+        If form.ShowDialog() = DialogResult.OK Then
+            dt.Rows.Add(form.MSSV, form.StudentName, form.School, form.ClassName, form.Grade)
+        End If
+    End Sub
+
+
+    ' Load data into the DataGridView when the form loads
+
+
+
+
+
+
     ' Nút xóa
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
+    Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
         If DataGridView.CurrentRow IsNot Nothing Then
             DataGridView.Rows.Remove(DataGridView.CurrentRow)
         End If
@@ -59,7 +67,7 @@ Public Class HomeScreen
     End Sub
 
     ' Khi chọn dòng → load dữ liệu vào TextBox
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = DataGridView.Rows(e.RowIndex)
             txt_name.Text = row.Cells("name").Value.ToString()
@@ -70,15 +78,11 @@ Public Class HomeScreen
     End Sub
 
 
-
     Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
         txt_name.Text = ""
         txt_school.Text = ""
         txt_class.Text = ""
         txt_grade.Text = ""
-    End Sub
-
-    Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
