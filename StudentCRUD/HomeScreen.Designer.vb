@@ -25,9 +25,8 @@ Partial Class HomeScreen
         btn_add = New Button()
         Label1 = New Label()
         txt_name = New TextBox()
-        txt_school = New TextBox()
         Label2 = New Label()
-        txt_class = New TextBox()
+        txt_classname = New TextBox()
         Label3 = New Label()
         txt_grade = New TextBox()
         Label5 = New Label()
@@ -36,6 +35,7 @@ Partial Class HomeScreen
         btn_search = New Button()
         btn_clear = New Button()
         DataGridView = New DataGridView()
+        cbb_school = New ComboBox()
         CType(DataGridView, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -66,14 +66,6 @@ Partial Class HomeScreen
         txt_name.Size = New Size(95, 23)
         txt_name.TabIndex = 2
         ' 
-        ' txt_school
-        ' 
-        txt_school.Location = New Point(251, 56)
-        txt_school.Margin = New Padding(3, 2, 3, 2)
-        txt_school.Name = "txt_school"
-        txt_school.Size = New Size(95, 23)
-        txt_school.TabIndex = 4
-        ' 
         ' Label2
         ' 
         Label2.AutoSize = True
@@ -83,13 +75,13 @@ Partial Class HomeScreen
         Label2.TabIndex = 3
         Label2.Text = "School"
         ' 
-        ' txt_class
+        ' txt_classname
         ' 
-        txt_class.Location = New Point(423, 56)
-        txt_class.Margin = New Padding(3, 2, 3, 2)
-        txt_class.Name = "txt_class"
-        txt_class.Size = New Size(95, 23)
-        txt_class.TabIndex = 6
+        txt_classname.Location = New Point(423, 56)
+        txt_classname.Margin = New Padding(3, 2, 3, 2)
+        txt_classname.Name = "txt_classname"
+        txt_classname.Size = New Size(95, 23)
+        txt_classname.TabIndex = 6
         ' 
         ' Label3
         ' 
@@ -164,14 +156,23 @@ Partial Class HomeScreen
         DataGridView.Margin = New Padding(3, 2, 3, 2)
         DataGridView.Name = "DataGridView"
         DataGridView.RowHeadersWidth = 51
-        DataGridView.Size = New Size(617, 149)
+        DataGridView.Size = New Size(664, 156)
         DataGridView.TabIndex = 15
+        ' 
+        ' cbb_school
+        ' 
+        cbb_school.FormattingEnabled = True
+        cbb_school.Location = New Point(245, 55)
+        cbb_school.Name = "cbb_school"
+        cbb_school.Size = New Size(95, 23)
+        cbb_school.TabIndex = 16
         ' 
         ' HomeScreen
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(700, 338)
+        Controls.Add(cbb_school)
         Controls.Add(DataGridView)
         Controls.Add(btn_clear)
         Controls.Add(btn_search)
@@ -179,9 +180,8 @@ Partial Class HomeScreen
         Controls.Add(btn_delete)
         Controls.Add(txt_grade)
         Controls.Add(Label5)
-        Controls.Add(txt_class)
+        Controls.Add(txt_classname)
         Controls.Add(Label3)
-        Controls.Add(txt_school)
         Controls.Add(Label2)
         Controls.Add(txt_name)
         Controls.Add(Label1)
@@ -197,9 +197,8 @@ Partial Class HomeScreen
     Friend WithEvents btn_add As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents txt_name As TextBox
-    Friend WithEvents txt_school As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txt_class As TextBox
+    Friend WithEvents txt_classname As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txt_grade As TextBox
     Friend WithEvents Label5 As Label
@@ -208,5 +207,6 @@ Partial Class HomeScreen
     Friend WithEvents btn_search As Button
     Friend WithEvents btn_clear As Button
     Friend WithEvents DataGridView As DataGridView
+    Friend WithEvents cbb_school As ComboBox
 
 End Class
